@@ -1,0 +1,26 @@
+Consulta No.1
+----------------------------
+select Tbl2.nombre
+from bd_sample.tbl_items_factura Tbl1
+inner join bd_sample.tbl_productos Tbl2 on Tbl1.id_producto = Tbl2.id_producto
+inner join bd_sample.tbl_facturas Tbl3 on Tbl1.id_factura = Tbl3.id_factura
+where fecha_emision >= '2020-05-01' and fecha_emision <= '2020-05-31'
+group by nombre
+
+Consulta No.2
+----------------------------
+select Tbl1.cantidad, Tbl3.fecha_emision
+from bd_sample.tbl_items_factura Tbl1
+inner join bd_sample.tbl_productos Tbl2 on Tbl1.id_producto = Tbl2.id_producto
+inner join bd_sample.tbl_facturas Tbl3 on Tbl1.id_factura = Tbl3.id_factura
+where cantidad = '1'
+group by id_subscriptor
+order by fecha_emision asc;
+
+Consulta No.3
+----------------------------
+select Tbl2.codigo_subscriptor, concat(Tbl2.nombres,' ', Tbl2.apellidos) Nombres_Completos, Tbl1.fecha_emision, Tbl1.numero_items, Tbl1.totapagar
+from bd_sample.tbl_facturas Tbl1
+inner join bd_sample.tbl_subscriptores Tbl2 on Tbl1.id_subscriptor = Tbl2.id_subscriptor
+where fecha_emision >= '2020-02-01' and fecha_emision <= '2020-02-29'
+order by totapagar desc
